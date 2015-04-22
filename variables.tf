@@ -48,6 +48,8 @@ variable "health_check_type" {
 variable "load_balancer_name" {}
 
 //Our template assumes two AZs and two VPC subnets for them
+variable "az1" {}
+variable "az2" {}
 variable "subnet_az1" {
   description = "The VPC subnet ID for AZ1"
 }
