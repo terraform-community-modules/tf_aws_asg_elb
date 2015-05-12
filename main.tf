@@ -27,11 +27,12 @@ resource "aws_launch_configuration" "launch_config" {
 resource "aws_autoscaling_group" "main_asg" {
   //We want this to explicitly depend on the launch config above
   depends_on = ["aws_launch_configuration.launch_config"]
-
-  //Assumes we want to use the first two ASz of the region
-  availability_zones = ["${var.aws_region}a","${var.aws_region}b"]
-
   name = "${var.asg_name}"
+
+  // The chosen availability zones *must* match the AZs the VPC subnets are
+  //   tied to.
+  availability_zones = ["${var.az1}","${var.az2}"]
+  vpc_zone_identifier = ["${var.subnet_az1}","${var.subnet_az2}"]
 
   // Uses the ID from the launch config created above
   launch_configuration = "${aws_launch_configuration.launch_config.id}"
@@ -42,7 +43,4 @@ resource "aws_autoscaling_group" "main_asg" {
   health_check_grace_period = "${var.health_check_grace_period}"
   health_check_type = "${var.health_check_type}"
   load_balancers = ["${var.load_balancer_name}"]
-
-  // Takes a list of VPC subnet IDS, we assume two, for the two AZs
-  vpc_zone_identifier = ["${var.subnet_az1}","${var.subnet_az2}"]
 }
