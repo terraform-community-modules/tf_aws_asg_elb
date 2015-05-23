@@ -43,11 +43,13 @@ Input Variables
    time out. Defaults to 300.
 - `health_check_type` - The health check type. Options are `ELB` and
    `EC2`. It defaults to `ELB` in this module.
-- `load_balancer_name` - The name of the ELB to associate with the ASG,
+- `load_balancer_names` - The name(s) of the ELB(s) to associate with the ASG,
    for settings it's backend instances. Ideally this is a reference to
-   an ELB you're making in the same template as this ASG.
-- `subnet_az1` - The VPC subnet ID for AZ1
-- `subnet_az2` - The VPC subnet ID for AZ2
+   an ELB you're making in the same template as this ASG. Can be a CSV of ELB names 
+   if more than one is desired.
+- `availability_zones` - CSV of availability zones (AZs) for the ASG. *ex. "us-east-1a,us-east-1c"*
+- `vpc_zone_subnets` - CSV of VPC subnets to associate with ASG. There should be one subnet
+   for each of the `availability_zones.` *ex. "subnet-d2gd22,subnet-2kjn8qq"*
 
 Outputs
 -------
@@ -88,8 +90,8 @@ module "my_autoscaling_group" {
   // The health_check_type can be EC2 or ELB and defaults to ELB
   health_check_type = "${var.health_check_type}"
 
-  subnet_az1 = "${var.subnet_az1}"
-  subnet_az2 = "${var.subnet_az2}"
+  availability_zones = "${var.availability_zones}"
+  vpc_zone_subnets = "${var.vpc_zone_subnets}"
 
   aws_access_key = "${var.aws_access_key}"
   aws_secret_key = "${var.aws_secret_key}"
@@ -112,8 +114,8 @@ module "my_autoscaling_group" {
 - asg_name
 - asg_number_of_instances.
 - load_balancer_name
-- subnet_az1
-- subnet_az2
+- availability_zones
+- vpc_zone_subnets
 
 Authors
 =======
