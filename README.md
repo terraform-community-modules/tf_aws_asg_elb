@@ -80,7 +80,7 @@ module "my_autoscaling_group" {
   user_data = "${var.user_data}"
   asg_name = "${var.asg_name}"
   asg_number_of_instances = "${var.asg_number_of_instances}"
-  asg_minimum_number_of_instancs = "${var.asg_minimum_number_of_instances}"
+  asg_minimum_number_of_instances = "${var.asg_minimum_number_of_instances}"
 
   //Using a reference to an SG we create in the same template
   load_balancer_name = "${module.my_elb.elb_name}"
