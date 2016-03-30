@@ -45,7 +45,7 @@ Input Variables
    `EC2`. It defaults to `ELB` in this module.
 - `load_balancer_names` - The name(s) of the ELB(s) to associate with the ASG,
    for settings it's backend instances. Ideally this is a reference to
-   an ELB you're making in the same template as this ASG. Can be a CSV of ELB names 
+   an ELB you're making in the same template as this ASG. Can be a CSV of ELB names
    if more than one is desired.
 - `availability_zones` - CSV of availability zones (AZs) for the ASG. *ex. "us-east-1a,us-east-1c"*
 - `vpc_zone_subnets` - CSV of VPC subnets to associate with ASG. There should be one subnet
@@ -85,7 +85,7 @@ module "my_autoscaling_group" {
   asg_minimum_number_of_instancs = "${var.asg_minimum_number_of_instances}"
 
   //Using a reference to an SG we create in the same template
-  load_balancer_name = "${module.my_elb.elb_name}"
+  load_balancer_names = "${module.my_elb.elb_name}"
 
   // The health_check_type can be EC2 or ELB and defaults to ELB
   health_check_type = "${var.health_check_type}"
@@ -113,7 +113,7 @@ module "my_autoscaling_group" {
 - user_data
 - asg_name
 - asg_number_of_instances.
-- load_balancer_name
+- load_balancer_names
 - availability_zones
 - vpc_zone_subnets
 
