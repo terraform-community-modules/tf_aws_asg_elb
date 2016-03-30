@@ -41,12 +41,3 @@ variable "availability_zones" {
 variable "vpc_zone_subnets" {
   default = "subnet-d2jdfd,subnet-2ell2kd"
 }
-variable "aws_access_key" {
-  default = "SOMEREALACCESSKEY"
-}
-variable "aws_secret_key" {
-  default = "SOMEREALSECRETKEY"
-}
-variable "aws_region" {
-  default = "us-west-2"
-}
