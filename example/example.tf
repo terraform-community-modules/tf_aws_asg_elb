@@ -1,15 +1,15 @@
 module "my_autoscaling_group" {
-  
+
   source = "../"
-  
+
   lc_name = "${var.lc_name}"
-  
+
   ami_id = "${var.ami_id}"
-  
+
   instance_type = "${var.instance_type}"
-  
+
   iam_instance_profile = "${var.iam_instance_profile}"
-  
+
   key_name = "${var.key_name}"
 
   security_group = "${var.security_group_id}"
@@ -26,9 +26,4 @@ module "my_autoscaling_group" {
 
   availability_zones = "${var.availability_zones}"
   vpc_zone_subnets = "${var.vpc_zone_subnets}"
-
-  aws_access_key = "${var.aws_access_key}"
-  aws_secret_key = "${var.aws_secret_key}"
-  aws_region = "${var.aws_region}"
-
 }
