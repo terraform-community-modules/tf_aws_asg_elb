@@ -24,6 +24,12 @@ resource "aws_autoscaling_group" "main_asg" {
 
   name = "${var.asg_name}"
 
+  tag {
+    key = "Name"
+    value= "${var.name}"
+    propagate_at_launch = true
+  }
+
   # The chosen availability zones *must* match the AZs the VPC subnets are tied to.
   availability_zones = ["${split(",", var.availability_zones)}"]
   vpc_zone_identifier = ["${split(",", var.vpc_zone_subnets)}"]
