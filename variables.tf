@@ -19,8 +19,19 @@ variable "key_name" {
 variable "security_group" {
   description = "ID of SG the launched instance will use"
 }
+variable "user_data_file_is_used" {
+  default = 1
+  description = "Use either a user_data_file, or a user_data_template, not both."
+}
 variable "user_data" {
   description = "The path to a file with user_data for the instances"
+}
+variable "user_data_template_is_used" {
+  default = 0
+  description = "Use either a user_data_template, or a user_data_file, not both."
+}
+variable "user_data_template" {
+  description = "A rendered template with user_data for the instances"
 }
 
 #
