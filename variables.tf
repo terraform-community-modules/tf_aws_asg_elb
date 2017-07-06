@@ -6,19 +6,25 @@
 # Launch Configuration Variables
 #
 variable "lc_name" {}
+
 variable "ami_id" {
   description = "The AMI to use with the launch configuration"
 }
+
 variable "instance_type" {}
+
 variable "iam_instance_profile" {
   description = "The IAM role the launched instance will use"
 }
+
 variable "key_name" {
   description = "The SSH public key name (in EC2 key-pairs) to be injected into instances"
 }
+
 variable "security_group" {
   description = "ID of SG the launched instance will use"
 }
+
 variable "user_data" {
   description = "The path to a file with user_data for the instances"
 }
@@ -41,12 +47,14 @@ variable "asg_number_of_instances" {
  */
 variable "asg_minimum_number_of_instances" {
   description = "The minimum number of instances the ASG should maintain"
-  default = 1
+  default     = 1
 }
+
 variable "health_check_grace_period" {
   description = "Number of seconds for a health check to time out"
-  default = 300
+  default     = 300
 }
+
 /*
  * Types available are:
  *   - ELB
@@ -56,7 +64,7 @@ variable "health_check_grace_period" {
  */
 variable "health_check_type" {
   description = "The health check used by the ASG to determine health"
-  default = "ELB"
+  default     = "ELB"
 }
 
 variable "load_balancer_names" {
@@ -79,3 +87,10 @@ variable "vpc_zone_subnets" {
   description = "A comma seperated list string of VPC subnets to associate with ASG, should correspond with var.availability_zones zones"
 }
 
+/*
+ * A list of tag blocks (maps)
+ */
+variable "asg_tags" {
+  description = "(Optional) A list of tag blocks (maps)"
+  default     = []
+}
