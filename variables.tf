@@ -23,6 +23,7 @@ variable "key_name" {
 
 variable "security_groups" {
   description = "List IDs of SGs the launched instance will use"
+  default     = []
 }
 
 variable "user_data" {
